@@ -47,7 +47,7 @@ class Warehouse:
         result = 0
         for item in self.products:
             result += (item.cost * item.quantity)
-            return result
+        return result
 
     def find_products_category(self, category):
         lst = []
@@ -58,7 +58,7 @@ class Warehouse:
 
         if lst:
             info = ""
-            for item in self.products:
+            for item in lst:
                 info_item = f"""
 Название: {item.name} | Категория: {item.category} | Цена: {item.cost} | {item.quantity}шт. """
                 info += info_item
