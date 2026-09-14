@@ -1,4 +1,4 @@
-from product import Product
+from logic.product import Product
 
 class Warehouse:
     def __init__(self):
@@ -23,22 +23,22 @@ class Warehouse:
 
     def find_product(self, name):
         for item in self.products:
-            if item.name == name:
-                info_item = """
+            if item.name.lower() == name.lower():
+                info_item = f"""
 Название: {item.name} | Категория: {item.category} | Цена: {item.cost} | {item.quantity}шт. """
                 return info_item
         return False
 
     def change_countity_product(self, name, number):
         for item in self.products:
-            if item.name == name:
+            if item.name.lower() == name.lower():
                 item.quantity = number
                 return True
         return False
 
     def delete_product(self, name):
         for item in self.products:
-            if item.name == name:
+            if item.name.lower() == name.lower():
                 self.products.remove(item)
                 return True
         return False
@@ -53,8 +53,14 @@ class Warehouse:
         lst = []
 
         for item in self.products:
-            if item.category == category:
+            if item.category.lower() == category.lower():
                 lst.append(item)
-        return lst
 
-    
+        if lst:
+            info = ""
+            for item in self.products:
+                info_item = f"""
+Название: {item.name} | Категория: {item.category} | Цена: {item.cost} | {item.quantity}шт. """
+                info += info_item
+            return info
+        return False
